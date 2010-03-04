@@ -1,0 +1,13 @@
+--- /usr/lib/perl5/site_perl/5.8.3/OpenGuides.pm	2006-10-06 19:28:06.000000000 -0700
++++ lib/OpenGuides.pm	2006-11-24 09:31:33.961913499 -0800
+@@ -569,6 +569,10 @@
+             $template = "rdf_index.tt";
+             $conf{content_type} = "application/rdf+xml";
+         }
++	elsif ( $args{format} eq "json" ) {
++            $template = "plain_index.tt";
++            $conf{content_type} = "text/javascript";
++        } 
+         elsif ( $args{format} eq "plain" ) {
+             $template = "plain_index.tt";
+             $conf{content_type} = "text/plain";

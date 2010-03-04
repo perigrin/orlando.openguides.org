@@ -1,0 +1,86 @@
+# What type of database do you want the site to run on?  postgres/mysql/sqlite
+dbtype = mysql
+
+# What's the name of the database that this site runs on?
+dbname = og_saintpaul 
+
+# ...the database user that can access that database?
+dbuser = openguide 
+
+# ...the password that they use to access the database?
+dbpass = tinkerbell 
+
+# ...the machine that the database is hosted on? (blank if local)
+dbhost = ohm.in.nachbaur.com  
+
+# What do you want the script to be called?
+script_name = index.cgi
+
+# What directory should I install it in?
+install_directory = /var/www/share/openguides/
+
+# What directory should I install the templates in?
+template_path = /var/www/share/openguides/templates-mobile
+
+# Where should I look for custom templates?
+custom_template_path = /var/www/sites/saintpaul.openguides.org/templates-mobile
+
+# What URL does the install directory map to?
+script_url = /
+
+# Do you want me to munge a custom lib path into the scripts?  If so, enter it here.  Separate path entries with whitespace.
+custom_lib_path = /var/www/sites/saintpaul.openguides.org/lib 
+
+# Do you want to use Plucene for searching? (recommended, but see Changes file before saying yes to this if you are upgrading)
+use_plucene = 1
+
+# What directory can I use to store indexes in for searching? ***NOTE*** This directory must exist and be writeable by the user that your script will run as.  See README for more on this.
+indexing_directory = /var/www/sites/saintpaul.openguides.org/apache/indexes
+
+# Do you want to enable page deletion?
+enable_page_deletion = 0
+
+# Please specify a password for the site admin.
+admin_pass = nodeletehere 
+
+# What's the URL of the site's stylesheet?
+stylesheet_url = /style/main.css
+
+# What's the site called? (should be unique)
+site_name = The Open Guide to the Twin Cities
+
+# Do you want the navigation bar included on the home page?
+navbar_on_home_page = 0
+
+# What should the home page of the wiki be called?
+home_name = Home
+
+# How would you describe the site?
+site_desc = The Open Guide to St. Paul
+
+# What city is the site based in?
+default_city = St. Paul
+
+# What country is the site based in?
+default_country = United States
+
+# Contact email address for the site administrator?
+contact_email = chris@prather.org 
+
+# What language will the site be in? (Please give an ISO language code.)
+default_language = en
+
+# What's the name of the node to use for the text formatting rules link?
+formatting_rules_node = Text Formatting Examples
+
+# Make node titles link to node backlinks (C2 style)?
+backlinks_in_title = 0
+
+# Distance calculation methods available are:  1) British National Grid  2) Irish National Grid  3) UTM ellipsoidWhich would you like to use?
+geo_handler = 3
+
+gmaps_api_key = ABQIAAAAlA2E46wydMylRdJ1QmWcLhS76Mjqh-g9rI4XwFKpoVVa1oys7xRr2hDMRxaf4Fq_OtttkUPcUA471w
+
+use_geocoder = 1
+
+force_wgs84 = 1

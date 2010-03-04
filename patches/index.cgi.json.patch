@@ -1,0 +1,56 @@
+--- /var/www/share/openguides/index.cgi	2006-11-11 17:31:24.000000000 -0800
++++ htdocs/index.cgi	2006-11-24 09:08:16.954962409 -0800
+@@ -1,20 +1,26 @@
+-#!/usr/local/bin/perl
++#!/usr/bin/perl5.8.3 
++
++eval 'exec /usr/bin/perl5.8.3  -S $0 ${1+"$@"}'
++    if 0; # not running under some shell
+ 
+ use strict;
++use lib qw( /var/www/sites/saintpaul.openguides.org/lib );
+ use warnings;
+ 
+ use vars qw( $VERSION );
+ $VERSION = '0.57';
+-use lib qw(../lib);
++
+ use CGI qw/:standard/;
+ use CGI::Carp qw(croak);
+ use Wiki::Toolkit;
++use Wiki::Toolkit::Plugin::Summariser;
+ use Geography::NationalGrid;
+ use Geography::NationalGrid::GB;
+ use OpenGuides;
+ use OpenGuides::CGI;
+ use OpenGuides::Config;
+ use OpenGuides::RDF;
++use OpenGuides::JSON;
+ use OpenGuides::Utils;
+ use OpenGuides::Template;
+ use Time::Piece;
+@@ -171,7 +177,9 @@
+     } else { # Default is to display a node.
+         if ( $format and $format eq "rdf" ) {
+             display_node_rdf( node => $node );
+-        } elsif ( $format and $format eq 'raw' ) {
++        } elsif ($format and $format eq 'json') {
++	    display_node_json( node => $node );
++	} elsif ( $format and $format eq 'raw' ) {
+             $guide->display_node(
+                                   id       => $node,
+                                   format   => 'raw',
+@@ -337,6 +348,13 @@
+     print $rdf_writer->emit_rdfxml( node => $args{node} );
+ }
+ 
++sub display_node_json {
++	my %args = @_;
++	my $json_writer = OpenGuides::JSON->new( wiki => $wiki, config => $config );
++	print "Content-type: text/javascript\n\n";
++	print $json_writer->emit_json( node => $args{node} );
++}
++
+ sub process_template {
+     my ($template, $node, $vars, $conf, $omit_header) = @_;
+ 

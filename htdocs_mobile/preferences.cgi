@@ -1,0 +1,1 @@
+/var/www/share/openguides/preferences.cgi

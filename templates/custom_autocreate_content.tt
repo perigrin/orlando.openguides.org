@@ -1,0 +1,7 @@
+[% IF index_type == "Category" %]
+Auto-generated list of things in this category (@MAP_LINK [[[% node_name %]|view them on a map]]):
+[% ELSE %]
+Auto-generated list of things in [% index_value %] (@MAP_LINK [[[% node_name %]|view them on a map]]):
+[% END %]
+@INDEX_LIST [[[% node_name %]]]
+

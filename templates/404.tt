@@ -1,0 +1,56 @@
+[% INCLUDE header.tt %]
+[% INCLUDE banner.tt %]
+<div id="content">
+[% INCLUDE navbar.tt %]
+<div id="maincontent" class="hreview">
+[% IF oldid %]
+<div id="redirect_message">(redirected from <a href="[% full_cgi_url %]?id=[% oldid %];redirect=0">[% oldid.replace('_', ' ') %]</a>)</div>
+[% END %]
+<h2> Page Not Found </h2>
+<p>The page you were looking for <code>[% full_url %]</code> doesn't seem to exist. It's possible that the page once existed, but due to system changes has moved somewhere. We've tried hard to keep that from happening but obviously we failed somewhere. 
+
+<p>The page <em>might</em> be found at: <a href="[% full_cgi_url %]?id=[% node_name %]">[% node_name %]</a >. 
+<p>Or you can try searching for similar pages:
+  <form method="get" action="search.cgi">
+    <table border="1">
+      <tr>
+         <th>
+           <label for="search_upper">Pages containing text:</label>
+         </th>
+         <td>
+           <input type="text" name="search" value="[% node_name %]" size="50" maxlength="80" id="search_upper" />
+
+         </td>
+       </tr>
+      <tr>
+        <th>Location:</th>
+        <td>
+        
+          <p>
+            within <input type="text" name="latlong_dist" value="" size="5" maxlength="5" /> metres of<br />
+
+            latitude (decimal) <input type="text" name="latitude" value="" size="10" maxlength="10" />,<br />
+            longitude (decimal) <input type="text" name="longitude" value="" size="10" maxlength="10" />
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="right">
+
+          <input type="submit" name="go" class="form_button" value="Go" />
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+<br clear="all" />
+
+<div id="search_form">
+  <form action="search.cgi" method="get">
+    <strong><label for="search">Search Open Guide to The Twin Cities:</label></strong> <input type="text" size="50" name="search" id="search" value="Search text" onclick="this.value=''" /> 
+    <input type="submit" name="Go" value="Go" id="go" class="form_button" />
+  </form>
+</div>
+
+[% INCLUDE footer.tt %]

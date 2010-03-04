@@ -1,0 +1,116 @@
+
+<Directory "/usr/local/awstats/wwwroot">
+    Options None
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+</Directory>
+
+<VirtualHost 208.98.210.33:80>
+    ServerAdmin root@saintpaul.openguides.org
+    ServerName stats.saintpaul.openguides.org
+    DocumentRoot /var/www/html
+    CheckSpelling on
+
+    Alias /classes "/usr/local/awstats/wwwroot/classes/"
+    Alias /css     "/usr/local/awstats/wwwroot/css/"
+    Alias /icons   "/usr/local/awstats/wwwroot/icon/"
+    ScriptAlias /awstats/ "/usr/local/awstats/wwwroot/cgi-bin/"
+
+    SetEnv AWSTATS_CONFIG saintpaul.openguides.org
+
+    RewriteEngine on
+    RewriteRule ^(/?)$  /awstats/awstats.pl          [R]
+
+	Alias /nodes /var/www/sites/saintpaul.openguides.org/htdocs/stats
+	<Location /nodes>
+		Options Indexes -ExecCGI FollowSymLinks
+		DirectoryIndex index.html
+    </Location>
+</VirtualHost>
+
+<VirtualHost 208.98.210.33:80>
+	ServerName twincities.openguides.org
+	ServerAlias *.twinciites.openguides.org
+	RewriteEngine on
+	RewriteRule ^(.*) http://saintpaul.openguides.org$1 [R=301]
+</VirtualHost>
+<VirtualHost 208.98.210.33:80>
+    ServerName mobile.saintpaul.openguides.org
+    ServerAlias mobile.twincities.openguides.org
+    ServerAlias mobile.openguide-saintpaul.prather.org
+    DocumentRoot /var/www/sites/saintpaul.openguides.org/htdocs_mobile
+    CustomLog    /var/www/sites/saintpaul.openguides.org/logs/access_log combined
+    ErrorLog     /var/www/sites/saintpaul.openguides.org/logs/error_log
+    DirectoryIndex index.cgi
+    AddHandler cgi-script .cgi
+
+    #RewriteEngine on
+    #RewriteCond %{REQUEST_URI} !^/favicon\.ico$
+    #RewriteCond %{REQUEST_URI} !^/robots\.txt$
+    #RewriteCond %{REQUEST_URI} !^/images/.*
+    #RewriteCond %{REQUEST_URI} !^/style/.*
+    #RewriteCond %{REQUEST_URI} !^/(index|check|newpage|preferences|supersearch)\.cgi
+    #RewriteRule ^/(.*)$        /index.cgi?$1
+
+	<Location /> 
+		Order allow,deny
+		Allow from all
+	</Location>
+	
+    <FilesMatch *.conf>
+        Order deny,allow
+        Deny From All
+    </FilesMatch>
+
+    <Directory /var/www/sites/saintpaul.openguides.org/htdocs_mobile>
+        Options ExecCGI FollowSymLinks
+        Order allow,deny
+        Allow From All
+    </Directory>
+</VirtualHost>
+
+<VirtualHost 208.98.210.33:80>
+	ServerName  saintpaul.openguides.org
+	ServerAlias *.saintpaul.openguides.org
+    ServerAdmin  root@saintpaul.openguides.org
+    DocumentRoot /var/www/sites/saintpaul.openguides.org/htdocs
+    CustomLog    /var/www/sites/saintpaul.openguides.org/logs/access_log combined
+    ErrorLog     /var/www/sites/saintpaul.openguides.org/logs/error_log
+
+    DirectoryIndex index.cgi
+    AddHandler cgi-script .cgi
+
+    ErrorDocument 404 /404.cgi
+
+    #RewriteEngine on
+    #RewriteCond %{REQUEST_URI} !^/favicon\.ico$
+    #RewriteCond %{REQUEST_URI} !^/robots\.txt$
+    #RewriteCond %{REQUEST_URI} !^/images/.*
+    #RewriteCond %{REQUEST_URI} !^/style/.*
+    #RewriteCond %{REQUEST_URI} !^/(index|check|newpage|preferences|supersearch)\.cgi
+    #RewriteRule ^/(.*)$        /index.cgi?$1
+
+	<Location /> 
+		Order allow,deny
+		Allow from all
+	</Location>
+	
+    <FilesMatch *.conf>
+        Order deny,allow
+        Deny From All
+    </FilesMatch>
+
+    <Directory /var/www/sites/saintpaul.openguides.org/htdocs>
+        Options ExecCGI FollowSymlinks
+        Order allow,deny
+        Allow From All
+    </Directory>
+
+
+    # The directories following Apache-writable directories are available to you:
+    # /var/www/sites/saintpaul.openguides.org/apache/axkit-cache
+    # /var/www/sites/saintpaul.openguides.org/apache/sessions
+    # /var/www/sites/saintpaul.openguides.org/apache/resource-cache
+</VirtualHost>
+

@@ -1,0 +1,17 @@
+<div id="banner">
+  [% TRY %]
+    [% INCLUDE custom_banner.tt %]
+  [% CATCH %]
+    <h1><a href="[% home_link %]">[% site_name %]</a></h1>
+    <ul id="topnav">
+    <li><a href="[% full_cgi_url %]?RecentChanges">Recent Changes</a></li>
+    <li><a href="[% full_cgi_url %]?action=index;index_type=category;index_value=Category">Categories</a></li>
+    <li><a href="[% full_cgi_url %]?action=index;index_type=category;index_value=Locales">Locales</a></li>
+    <li><a href="/preferences.cgi">User Preferences</a></li>
+    <li><a href="/newpage.cgi">Create New Page</a></li>
+  [% UNLESS not_editable %]
+    <li class="edit_page_link"><a href="[% full_cgi_url %]?id=[% node_param %];action=edit">Edit this page</a></li>
+  [% END %]
+    </ul>
+  [% END %]
+</div>
